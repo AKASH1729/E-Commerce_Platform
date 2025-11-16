@@ -1,43 +1,37 @@
-# Stage 1: Build
+# ---------- STAGE 1: BUILD ----------
 FROM node:18-alpine AS builder
-
-# Set working directory
 WORKDIR /app
 
-# Install dependencies
-COPY package.json package-lock.json ./
+# Copy package.json first for caching
+COPY package*.json ./
 
+# Install only production dependencies
+RUN npm ci --omit=dev
 
-RUN npm ci --only=production
-
-# Copy source code
+# Copy the rest of the backend files
 COPY . .
 
-# Stage 2: Production
+# ---------- STAGE 2: RUNTIME ----------
 FROM node:18-alpine
-
-# Set working directory
 WORKDIR /app
 
-# Create a non-root user
+# Create non-root user
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-# Copy dependencies from builder
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app ./
+# Copy built app from builder
+COPY --from=builder /app /app
 
-# Set environment variables
-ENV NODE_ENV=production
-
-# Expose port
-EXPOSE 5001
+# Fix permissions for non-root user
+RUN chown -R appuser:appgroup /app
 
 # Switch to non-root user
 USER appuser
 
-# Start the server
-CMD ["npm", "start"]
+# Environment
+ENV NODE_ENV=production
 
-# # Health check
-# HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-#   CMD curl -f http://localhost:5001/health || exit 1
+# Expose backend port
+EXPOSE 4000
+
+# Start the backend using npm
+CMD ["npm", "start"]

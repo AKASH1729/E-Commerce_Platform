@@ -1,50 +1,29 @@
-version: "3.8"
+version: '3.9'
 
 services:
-  frontend:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    ports:
-      - "8080:80"
-    depends_on:
-      - backend
-    networks:
-      - chat-network
-    environment:
-      - BACKEND_URL=http://backend:5001
+  geomart-backend:
+    build: ./server
+    container_name: geomart-backend
     restart: unless-stopped
-
-  backend:
-    build:
-      context: ./server
-      dockerfile: Dockerfile
     ports:
-      - "5001:5001"
-    depends_on:
-      - mongo
+      - "3000:4000"
     env_file:
-      - ./server/.env        # ✅ properly indented
+      - ./server/.env
     networks:
-      - chat-network
-    restart: unless-stopped
+      - geomart-network
 
-  mongo:
-    image: mongo:latest
-    ports:
-      - "27017:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=admin
-    volumes:
-      - mongodb_data:/data/db
-    networks:
-      - chat-network
+  frontend:
+    build: ./client
+    container_name: geomart-frontend
     restart: unless-stopped
+    ports:
+      - "5173:80"
+    env_file:
+      - ./client/.env
+    depends_on:
+      - geomart-backend
+    networks:
+      - geomart-network
 
 networks:
-  chat-network:
-    driver: bridge
-
-volumes:
-  mongodb_data:
+  geomart-network:
