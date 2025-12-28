@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: e-commerce-platform
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 80
+      targetPort: 4000
+  type: ClusterIP
+  

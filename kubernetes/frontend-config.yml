@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: e-commerce-platform
+data:
+  NODE_ENV: "development"
+  PORT: "5173"
