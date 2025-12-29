@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: akas11729/e-commerce-frontend:latest
+          image: akas11729/e-commerce-backend:latest
           ports:
             - containerPort: 4000
           envFrom:
