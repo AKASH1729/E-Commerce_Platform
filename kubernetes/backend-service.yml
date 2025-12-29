@@ -8,6 +8,6 @@ spec:
     app: backend
   ports:
     - port: 80
-      targetPort: 4000
+      targetPort: 3000
   type: ClusterIP
   

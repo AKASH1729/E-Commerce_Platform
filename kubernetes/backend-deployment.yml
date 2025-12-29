@@ -17,7 +17,7 @@ spec:
         - name: backend
           image: akas11729/e-commerce-backend:latest
           ports:
-            - containerPort: 4000
+            - containerPort: 3000
           envFrom:
             - configMapRef:
                 name: backend-config

@@ -5,7 +5,7 @@ metadata:
   namespace: e-commerce-platform
 data:
   NODE_ENV: "development"
-  PORT: "4000"
+  PORT: "3000"
   SELLER_EMAIL: "admin@example.com"
   CLOUDINARY_CLOUD_NAME: "dnnvny035"
   STRIPE_PUBLISHABLE_KEY: "pk_test_51S6PTk2NyX9tyPAnqXVlmPVbZ5aicxWMqdBl8xdZsZJafPBc8ZXp5t2zEAFNWhXmMKKYaTs6RsoxnAxtjvQeVGgL00h8jDwL9G"
