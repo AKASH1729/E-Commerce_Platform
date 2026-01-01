@@ -49,18 +49,17 @@ Add these screenshots inside a folder called /screenshots in your GitHub repo.
 Then use this format:
 
 ## 🖥 Home Page
-![Home](kubernetes/output_image/image1.png)
+![Home](kubernetes/output_image/image3.png)
 
 ## 🛍 Products Page
-![Products](kubernetes/output_image/image2.png)
+![Products](kubernetes/output_image/image1.png)
 
 ## 📦 Categories
-![Categories](kubernetes/output_image/image3.png)
+![Categories](kubernetes/output_image/image4.png)
 
-## 🧺 Cart & Login
-![Cart](kubernetes/output_image/image4.png)
 
-services
+
+## Services
 ![Cart](kubernetes/output_image/image5.png)
 
 
