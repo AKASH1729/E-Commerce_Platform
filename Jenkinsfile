@@ -76,26 +76,6 @@ pipeline {
             }
         }
 
-        stage("Export Environment Variables") {
-            parallel {
-                stage("Backend env") {
-                    steps {
-                        dir("Automations") {
-                            sh "bash updatebackendnew.sh"
-                        }
-                    }
-                }
-
-                stage("Frontend env") {
-                    steps {
-                        dir("Automations") {
-                            sh "bash updatefrontendnew.sh"
-                        }
-                    }
-                }
-            }
-        }
-
         stage("Docker: Build Images") {
             steps {
                 script {
