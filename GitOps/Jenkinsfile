@@ -39,13 +39,13 @@ pipeline {
                 script{
                     dir('kubernetes'){
                         sh """
-                            sed -i -e s/e-commerce-backend.*/e-commerce-backend:${params.BACKEND_DOCKER_TAG}/g backend-deployment.yml
+                            sed -i -e s/ecommerce-backend.*/e-commerce-backend:${params.BACKEND_DOCKER_TAG}/g backend-deployment.yml
                         """
                     }
                     
                     dir('kubernetes'){
                         sh """
-                            sed -i -e s/e-commerce-frontend.*/e-commerce-frontend:${params.FRONTEND_DOCKER_TAG}/g frontend-deployment.yaml
+                            sed -i -e s/ecommerce-frontend.*/e-commerce-frontend:${params.FRONTEND_DOCKER_TAG}/g frontend-deployment.yaml
                         """
                     }
                     
