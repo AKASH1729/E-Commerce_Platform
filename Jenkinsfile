@@ -34,7 +34,7 @@ pipeline {
                 script {
                     code_checkout(
                         "https://github.com/AKASH1729/E-Commerce_Platform.git",
-                        "main"
+                        "master"
                     )
                 }
             }
